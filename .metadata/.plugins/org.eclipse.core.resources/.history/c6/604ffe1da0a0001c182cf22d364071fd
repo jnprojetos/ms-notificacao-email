@@ -1,0 +1,17 @@
+server.port=8080
+
+spring.datasource.url= jdbc:postgresql://localhost:5433/ms-email
+spring.datasource.username=postgres
+spring.datasource.password=root
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=josimar.n2007@gmail.com
+spring.mail.password=ecsvvzckqgrffscj
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+spring.rabbitmq.addresses=amqps://dtjgfubc:6ZMDJYSghNH6McXVN_e0kiqW1uuktOdL@shrimp.rmq.cloudamqp.com/dtjgfubc
+spring.rabbitmq.queue=ms.email

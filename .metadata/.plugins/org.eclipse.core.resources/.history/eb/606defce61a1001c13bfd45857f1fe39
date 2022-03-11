@@ -1,0 +1,16 @@
+package br.com.ms.dto.consumer;
+
+import java.time.LocalDate;
+
+import lombok.Getter;
+
+@Getter
+public class ClienteConsumer {
+	private long id;
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private LocalDate dataNascimento;
+    private String email;
+
+}

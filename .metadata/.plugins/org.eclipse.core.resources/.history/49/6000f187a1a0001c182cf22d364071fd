@@ -1,0 +1,22 @@
+package br.com.ms.consumer;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.com.ms.dto.consumer.FuncionarioConsumer;
+import br.com.ms.service.EmailService;
+
+@Component
+public class EmailFuncionaConsumer {
+	
+	@Autowired
+	EmailService emailService;
+	
+	@RabbitListener(queues = "FUNCIONARIOS")
+	public void consumer(FuncionarioConsumer funcionarioConsumer) {
+		System.out.println(funcionarioConsumer.getNome());
+		System.out.println(funcionarioConsumer.getEmail());
+	}
+
+}

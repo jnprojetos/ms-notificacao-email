@@ -1,0 +1,15 @@
+package br.com.ms.consumer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.com.ms.service.EmailService;
+
+@Component
+public class EmailChamadoConsumer {
+	
+	@Autowired
+	EmailService emailService;
+
+	
+}

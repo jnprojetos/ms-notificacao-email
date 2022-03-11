@@ -1,0 +1,29 @@
+package br.com.ms.consumer;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.com.ms.dto.consumer.ChamadoConsumer;
+import br.com.ms.model.EmailModel;
+import br.com.ms.service.EmailService;
+
+@Component
+public class EmailChamadoConsumer {
+	
+	@Autowired
+	EmailService emailService;
+
+	@RabbitListener(queues = "CHAMADOS")
+	public void consumer(ChamadoConsumer chamadoConsumer) {
+		EmailModel emailModel = new EmailModel();
+		emailModel.setAssunto("Abertura do Chamado N° " + chamadoConsumer.getNumeroChamado());
+		emailModel.setEmailDestinatario(chamadoConsumer.getCliente().getEmail());
+		emailModel.setMensagem("Chamado N° " + chamadoConsumer.getNumeroChamado() + "\n" + "Cliente: " + chamadoConsumer.getCliente().getNome() + "\n"
+				+ "CPF: " + chamadoConsumer.getCliente().getCpf() + "\n" + "Telefone: " + chamadoConsumer.getCliente().getTelefone() + "\n"
+				+ "Data Abertura: " + chamadoConsumer.getDataAbertura() + "\n" + "Funcionário Responsável: " + chamadoConsumer.getFuncionario().getNome() + "\n" + "Descrição: " + chamadoConsumer.getDescricao() + "\n"
+				+ "Situação: " + chamadoConsumer.getSituacao());
+		
+		emailService.enviarEmail(emailModel);
+	}
+}
